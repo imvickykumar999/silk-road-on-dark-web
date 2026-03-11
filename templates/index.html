@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block extra_css %}
+        .sidebar-link:hover {
+            text-decoration: underline;
+            color: #0b6b21;
+        }
+        .product-card img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+        }
+{% endblock %}
+
+{% block content %}
+    <!-- Countdown Banner -->
+    <div class="sr-border py-4 mb-6">
+        <div class="text-center text-2xl font-bold">
+            <span id="countdown">8 days 2 hrs 51 mins 31 secs</span>
+            until <span class="sr-green">Four Twenty!!!</span>
+        </div>
+    </div>
+
+    <!-- Main Content: Product Grid -->
+        <main class="flex-grow">
+            <div class="grid grid-cols-3 gap-y-10 gap-x-4">
+                <!-- Product 1 -->
+                <a href="{{ url_for('details') }}" class="product-card block hover:opacity-80 transition-opacity cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1533630661533-31f0160be6e1?w=300&h=300&fit=crop" alt="Cranberry Kush" class="mb-2">
+                    <p class="text-xs font-bold uppercase mb-1">CRANBERRY KUSH & STRAWBERRY...</p>
+                    <p class="font-bold">$36.82</p>
+                </a>
+                <!-- Product 2 -->
+                <a href="{{ url_for('details') }}" class="product-card block hover:opacity-80 transition-opacity cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=300&h=300&fit=crop" alt="Fake Blu Ray" class="mb-2">
+                    <p class="text-xs font-bold uppercase mb-1">10pc of Genuine Fake Blu Ray Discs</p>
+                    <p class="font-bold">$49.50</p>
+                </a>
+                <!-- Product 3 -->
+                <a href="{{ url_for('details') }}" class="product-card block hover:opacity-80 transition-opacity cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=300&h=300&fit=crop" alt="Oxycodone" class="mb-2">
+                    <p class="text-xs font-bold uppercase mb-1">30mg Oxycodone (Roxie, Roxy) IR...</p>
+                    <p class="font-bold">$250.00</p>
+                </a>
+                <!-- Product 4 -->
+                <a href="{{ url_for('details') }}" class="product-card block hover:opacity-80 transition-opacity cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1518544801976-3e159e50e5bb?w=300&h=300&fit=crop" alt="Bitcoins" class="mb-2">
+                    <p class="text-xs font-bold uppercase mb-1">BITCOINS - NOW THE LOWEST PRICE...</p>
+                    <p class="font-bold">$0.00</p>
+                </a>
+                <!-- Product 5 -->
+                <a href="{{ url_for('details') }}" class="product-card block hover:opacity-80 transition-opacity cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=300&h=300&fit=crop" alt="Diazepam" class="mb-2">
+                    <p class="text-xs font-bold uppercase mb-1">Diazepam (valium) 10mg - 1000...</p>
+                    <p class="font-bold">$425.50</p>
+                </a>
+                <!-- Product 6 -->
+                <a href="{{ url_for('details') }}" class="product-card block hover:opacity-80 transition-opacity cursor-pointer">
+                    <img src="https://images.unsplash.com/photo-1533630661533-31f0160be6e1?w=300&h=300&fit=crop&q=10" alt="Anarcho47" class="mb-2">
+                    <p class="text-xs font-bold uppercase mb-1">Anarcho47's Magikally Epic...</p>
+                    <p class="font-bold">$2.48</p>
+                </a>
+            </div>
+        </main>
+
+        <!-- Right Sidebar: News -->
+        <aside class="w-48 flex-shrink-0">
+            <h2 class="font-bold underline mb-3">News:</h2>
+            <ul class="text-sm space-y-4">
+                <li class="flex items-start gap-2">
+                    <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-black shrink-0"></span>
+                    <a href="#" class="hover:underline">Who's your <span class="sr-green font-bold">favorite</span>?</a>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-black shrink-0"></span>
+                    <a href="#" class="hover:underline">Acknowledging <span class="sr-green font-bold">Heroes</span></a>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-black shrink-0"></span>
+                    <a href="#" class="hover:underline">A new anonymous market <span class="sr-green font-bold">The Armory!</span></a>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="mt-1.5 w-1.5 h-1.5 rounded-full bg-black shrink-0"></span>
+                    <a href="#" class="hover:underline"><span class="sr-green font-bold">State of the Road Address</span></a>
+                </li>
+            </ul>
+        </aside>
+
+    <script>
+        // Simple countdown logic
+        function updateCountdown() {
+            const now = new Date();
+            // Target: 4/20 (April 20th) of the current or next year
+            let targetDate = new Date(now.getFullYear(), 3, 20); // Month is 0-indexed (3 = April)
+            
+            if (now > targetDate) {
+                targetDate = new Date(now.getFullYear() + 1, 3, 20);
+            }
+
+            const diff = targetDate - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('countdown').innerText = 
+                `${days} days ${hours} hrs ${mins} mins ${secs} secs`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+{% endblock %}

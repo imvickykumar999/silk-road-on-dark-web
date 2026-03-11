@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block title %}Silk Road - Browsing Drugs{% endblock %}
+
+{% block extra_css %}
+        .sidebar-count {
+            color: #888;
+            font-style: italic;
+            font-size: 0.85em;
+            margin-left: 4px;
+        }
+        .category-link {
+            color: #0b6b21;
+            text-decoration: none;
+        }
+        .category-link:hover {
+            text-decoration: underline;
+        }
+        .product-table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #e2e2e2;
+        }
+        .product-table th {
+            background-color: #f9f9f9;
+            border: 1px solid #e2e2e2;
+            padding: 8px;
+            font-weight: bold;
+            color: #666;
+        }
+        .product-table td {
+            border: 1px solid #e2e2e2;
+            padding: 12px 8px;
+            vertical-align: top;
+        }
+        .search-input {
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+{% endblock %}
+
+{% block content %}
+    <!-- Subheader with DPR Quote -->
+    <div class="flex flex-col items-end -mt-4 mb-4">
+        <!-- DPR Quote Section -->
+        <div class="flex items-center gap-2 mb-2">
+            <div class="text-right">
+                <p class="text-[10px] text-gray-400 uppercase tracking-tighter">a few words from</p>
+                <p class="text-xs text-gray-500 font-bold">the Dread Pirate Roberts</p>
+            </div>
+            <div class="w-8 h-8 text-black">
+                <!-- Silhouette of sword fighter -->
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21,16.5C21,16.88 20.79,17.21 20.47,17.38L12.57,21.82C12.41,21.94 12.21,22 12,22C11.79,22 11.59,21.94 11.43,21.82L3.53,17.38C3.21,17.21 3,16.88 3,16.5V7.5C3,7.12 3.21,6.79 3.53,6.62L11.43,2.18C11.59,2.06 11.79,2 12,2C12.21,2 12.41,2.06 12.57,2.18L20.47,6.62C20.79,6.79 21,7.12 21,7.5V16.5Z"/></svg>
+            </div>
+        </div>
+        <div class="text-right text-[11px] leading-tight">
+            <p class="text-gray-500">Hi, <span class="sr-green font-bold">Anonymous</span></p>
+        </div>
+    </div>
+
+    <!-- Main Browsing Area -->
+    <main class="flex-grow">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">
+                {% if query %}
+                    search results for "{{ query }}"
+                {% else %}
+                    browsing drugs
+                {% endif %}
+            </h2>
+            
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th colspan="2" class="text-center w-3/5">item</th>
+                        <th class="text-center w-1/5">vendor</th>
+                        <th class="text-center w-1/5">price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Row 1 -->
+                    <tr>
+                        <td class="w-48">
+                            <div class="relative border border-gray-100 p-1">
+                                <img src="https://images.unsplash.com/photo-1533630661533-31f0160be6e1?w=200&h=150&fit=crop" alt="Hydro" class="w-full">
+                                <div class="absolute bottom-1 right-1 w-8 h-8 bg-white p-0.5 border border-gray-200">
+                                    <div class="w-full h-full bg-yellow-100 flex items-center justify-center text-[8px] font-bold">ZEN</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="#" class="sr-green font-bold text-[15px] hover:underline leading-tight block">
+                                0,7g Hydroponically Grown Crystal Cloud (LIMITED TIME OFFER!!!)
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <a href="#" class="sr-green hover:underline">Zen Garden</a>
+                        </td>
+                        <td class="text-right px-4">
+                            <div class="font-bold sr-price-red mb-1"><span class="btc-symbol"></span>0.06911620</div>
+                            <a href="#" class="sr-green text-xs font-bold hover:underline block">add to cart</a>
+                        </td>
+                    </tr>
+                    <!-- Row 2 -->
+                    <tr>
+                        <td class="w-48">
+                            <div class="border border-gray-100 p-1">
+                                <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=200&h=150&fit=crop" alt="Powder" class="w-full">
+                            </div>
+                        </td>
+                        <td>
+                            <a href="#" class="sr-green font-bold text-[15px] hover:underline leading-tight block">
+                                7g (1/4oz) P.Cubensis Powder
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <a href="#" class="sr-green hover:underline">MagicTed</a>
+                        </td>
+                        <td class="text-right px-4">
+                            <div class="font-bold sr-price-red mb-1"><span class="btc-symbol"></span>0.16030500</div>
+                            <a href="#" class="sr-green text-xs font-bold hover:underline block">add to cart</a>
+                        </td>
+                    </tr>
+                    <!-- Row 3 -->
+                    <tr>
+                        <td class="w-48">
+                            <div class="border border-gray-100 p-1 bg-[#1a6b6b] flex items-center justify-center">
+                                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=200&h=150&fit=crop" alt="Methadone" class="w-full mix-blend-overlay">
+                            </div>
+                        </td>
+                        <td>
+                            <a href="#" class="sr-green font-bold text-[15px] hover:underline leading-tight block">
+                                Methadone hydrochloride - 250mg pure (min 90%) crystaline powder
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <a href="#" class="sr-green hover:underline">mseller</a>
+                        </td>
+                        <td class="text-right px-4">
+                            <div class="font-bold sr-price-red mb-1"><span class="btc-symbol"></span>0.26754660</div>
+                            <a href="#" class="sr-green text-xs font-bold hover:underline block">add to cart</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </main>
+{% endblock %}
